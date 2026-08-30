@@ -62,8 +62,8 @@ h2 { margin: 0; font-size: clamp(40px, 5vw, 72px); line-height: 1.05; letter-spa
 .feature p { max-width: 290px; color: var(--muted); font-size: 15px; line-height: 1.75; margin: 0; }
 
 .story { max-width: var(--max); margin: 0 auto 180px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 6%; padding: 0 24px; }
-.story-image { width: min(100%, 540px); aspect-ratio: 718 / 780; margin: 0; padding: 18px; justify-self: center; overflow: hidden; border: 1px solid #49301f; border-radius: 42px; background: linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 24%, rgba(0, 0, 0, .38) 52%, rgba(255, 255, 255, .04) 76%, transparent), repeating-linear-gradient(3deg, #120c08 0 4px, #291a10 5px 9px, #1b110b 10px 15px, #352216 16px 19px); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .035), inset 0 0 24px rgba(0, 0, 0, .8), 0 50px 100px rgba(0, 0, 0, .5); }
-.story-image img { display: block; width: 100%; height: 100%; border: 1px solid rgba(0, 0, 0, .85); border-radius: 25px; object-fit: cover; box-shadow: 0 0 18px rgba(0, 0, 0, .8); }
+.story-image { width: min(100%, 540px); aspect-ratio: 1; margin: 0; justify-self: center; overflow: hidden; border: 1px solid rgba(255, 255, 255, .1); border-radius: 34px; background: #0b0e14; box-shadow: 0 50px 100px rgba(0, 0, 0, .45); }
+.story-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .story-copy h2 { font-size: clamp(38px, 3.8vw, 56px); word-break: keep-all; }
 .story-copy > p:last-child { margin: 30px 0 0; color: var(--muted); font-size: 16px; line-height: 1.9; }
 
@@ -114,8 +114,7 @@ footer p { text-align: right; }
   .feature-grid { margin-top: 60px; }
   .story { grid-template-columns: 1fr; gap: 55px; margin-bottom: 100px; padding: 0 22px; }
   .story-copy h2, .closing h2 { word-break: normal; }
-  .story-image { width: min(100%, 480px); padding: 12px; border-radius: 32px; }
-  .story-image img { border-radius: 21px; }
+  .story-image { width: min(100%, 480px); }
   .closing { min-height: 600px; }
   footer { grid-template-columns: 1fr auto; }
   footer nav { grid-row: 2; grid-column: 1 / -1; }
