@@ -3,119 +3,71 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#05070a">
-  <meta name="description" content="DualFlipClock 双翻页时钟——在同一块屏幕上，看见两个地方的时间、天气与牵挂。">
-  <meta name="apple-itunes-app" content="app-id=6766014702">
-  <meta property="og:title" content="DualFlipClock · 双翻页时钟">
-  <meta property="og:description" content="两个地方，同一刻。为跨城市的家人、团队与生活而设计。">
+  <meta name="theme-color" content="#070706">
+  <meta name="description" content="Lu Lin 独立设计的时钟 App：DualFlipClock 与 CreativeClock。两种看待时间的方式。">
+  <meta property="og:title" content="Clock Studio · Two ways to see time">
+  <meta property="og:description" content="DualFlipClock 与 CreativeClock——连接远方，或让时间成为风景。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dowellhz.github.io/clock/">
-  <meta property="og:image" content="https://dowellhz.github.io/clock/assets/app-screenshot.png">
+  <meta property="og:image" content="https://dowellhz.github.io/clock/creativeclock/assets/images/og-cover.jpg">
   <link rel="canonical" href="https://dowellhz.github.io/clock/">
-  <link rel="icon" href="assets/app-icon.png?v=1024">
-  <link rel="apple-touch-icon" href="assets/app-icon.png?v=1024">
-  <link rel="stylesheet" href="styles.css">
-  <title>DualFlipClock · 双翻页时钟</title>
-  <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"DualFlipClock","operatingSystem":"iOS 17 or later","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://apps.apple.com/app/id6766014702"}
-  </script>
+  <link rel="icon" href="creativeclock/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="creativeclock/assets/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="hub.css">
+  <title>Clock Studio · DualFlipClock &amp; CreativeClock</title>
 </head>
 <body>
-  <header class="nav" aria-label="主导航">
-    <a class="brand" href="#top" aria-label="DualFlipClock 首页">
-      <img src="assets/app-icon.png?v=1024" alt="" width="38" height="38">
-      <span>DualFlipClock</span>
+  <header class="hub-nav">
+    <a class="studio-mark" href="./" aria-label="Clock Studio 首页">
+      <span class="mark-dots" aria-hidden="true"><i></i><i></i></span>
+      <span>Clock Studio</span>
     </a>
-    <div class="nav-actions">
-      <button class="language" type="button" data-language aria-label="Switch to English">EN</button>
-      <a class="nav-download" href="https://apps.apple.com/app/id6766014702" target="_blank" rel="noopener">
-        <span data-zh>下载</span><span data-en>Download</span>
-      </a>
-    </div>
+    <span class="nav-note">Independent apps by Lu Lin</span>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="aurora" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <p class="eyebrow"><span data-zh>为跨越时区的牵挂而生</span><span data-en>Made for lives across time zones</span></p>
-        <h1 id="hero-title">
-          <span data-zh><span class="hero-title-line">两个地方，</span><span class="hero-title-line">同一刻。</span></span>
-          <span data-en><span class="hero-title-line">Two places.</span><span class="hero-title-line">One moment.</span></span>
-        </h1>
-        <p class="hero-description">
-          <span data-zh>在同一块屏幕上，看见两座城市的时间与天气。<br>简洁、安静，适合桌面，也适合床头。</span>
-          <span data-en>See the time and weather in two cities at a glance.<br>Quietly designed for your desk or bedside.</span>
-        </p>
-        <a class="app-store-button" href="https://apps.apple.com/app/id6766014702" target="_blank" rel="noopener" aria-label="在 App Store 下载 DualFlipClock">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.03-3.02 2.47-4.49 2.58-4.56a5.54 5.54 0 0 0-4.36-2.36c-1.84-.2-3.62 1.1-4.56 1.1-.96 0-2.41-1.08-3.97-1.05a5.8 5.8 0 0 0-4.87 2.97c-2.12 3.67-.54 9.07 1.49 12.04 1.02 1.45 2.2 3.07 3.77 3.01 1.53-.06 2.1-.97 3.95-.97 1.83 0 2.37.97 3.97.93 1.65-.02 2.69-1.46 3.67-2.92a12.03 12.03 0 0 0 1.68-3.42 5.22 5.22 0 0 1-3.35-4.77ZM14.07 3.67A5.3 5.3 0 0 0 15.29 0a5.39 5.39 0 0 0-3.49 1.75 5.03 5.03 0 0 0-1.25 3.53 4.47 4.47 0 0 0 3.52-1.61Z"/></svg>
-          <span><small data-zh>下载于</small><small data-en>Download on the</small><strong>App Store</strong></span>
-        </a>
-        <p class="requirements"><span data-zh>免费下载 · 支持 iPhone 与 iPad · iOS 17+</span><span data-en>Free download · iPhone and iPad · iOS 17+</span></p>
-      </div>
+  <main>
+    <section class="hub-hero">
+      <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+      <p class="hub-eyebrow">Two ways to see time</p>
+      <h1>时间，不止<br><span>一种模样。</span></h1>
+      <p class="hub-lead">一个连接两个地方，一个让每一分钟真正动起来。<br>选择你的时间方式。</p>
+    </section>
 
-      <div class="device-wrap" aria-label="DualFlipClock 实际界面截图：北京与纽约双城时钟">
-        <div class="device-glow" aria-hidden="true"></div>
-        <div class="device">
-          <div class="device-screen">
-            <img src="assets/app-screenshot.png" alt="DualFlipClock 实际界面，北京为夜晚，纽约为白天">
-          </div>
-          <div class="sensor" aria-hidden="true"></div>
+    <section class="app-gallery" aria-label="我们的 App">
+      <a class="app-card dual-card" href="dualflipclock/" aria-label="打开 DualFlipClock 产品页面">
+        <div class="card-light" aria-hidden="true"></div>
+        <div class="app-icon-wrap">
+          <img src="assets/app-icon.png?v=1024" width="1024" height="1024" alt="DualFlipClock App 图标">
         </div>
-      </div>
-      <a class="scroll-cue" href="#features" aria-label="继续浏览"><span></span></a>
-    </section>
+        <div class="app-copy">
+          <span class="app-number">01</span>
+          <p class="app-kicker">Connection across time zones</p>
+          <h2>DualFlipClock</h2>
+          <p>两个地方，同一刻。把两座城市的时间、天气与牵挂放在同一块屏幕上。</p>
+          <span class="enter-link">进入产品页 <b aria-hidden="true">↗</b></span>
+        </div>
+      </a>
 
-    <section class="features" id="features" aria-labelledby="features-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow"><span data-zh>一眼，跨越时区</span><span data-en>A world at a glance</span></p>
-        <h2 id="features-title"><span data-zh>让时间回归简单。</span><span data-en>Time, made simple again.</span></h2>
-      </div>
-      <div class="feature-grid">
-        <article class="feature reveal">
-          <span class="feature-index">01</span>
-          <h3><span data-zh>双城同屏</span><span data-en>Two cities, one screen</span></h3>
-          <p><span data-zh>家人、团队或旅途，两地时间无需换算，一眼便知。</span><span data-en>No conversions. See both places in one calm, clear view.</span></p>
-        </article>
-        <article class="feature reveal">
-          <span class="feature-index">02</span>
-          <h3><span data-zh>天气相随</span><span data-en>Weather included</span></h3>
-          <p><span data-zh>时间、日期与实时天气自然融为一体，信息恰到好处。</span><span data-en>Time, date and live weather—only what matters, beautifully composed.</span></p>
-        </article>
-        <article class="feature reveal">
-          <span class="feature-index">03</span>
-          <h3><span data-zh>昼夜自适应</span><span data-en>Made for day and night</span></h3>
-          <p><span data-zh>随所选城市进入昼夜，深夜自动柔和，不打扰空间。</span><span data-en>Adapts to each city's day and night, with a softer late-night display.</span></p>
-        </article>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-title">
-      <figure class="story-image reveal">
-        <img src="assets/widget-large.png" alt="DualFlipClock 大号桌面 Widget，显示北京与纽约的时间和天气">
-      </figure>
-      <div class="story-copy reveal">
-        <p class="eyebrow"><span data-zh>源于真实的牵挂</span><span data-en>Born from a real connection</span></p>
-        <h2 id="story-title"><span data-zh>远方不是一个数字。</span><span data-en>Distance is more than a number.</span></h2>
-        <p><span data-zh>DualFlipClock 起源于一位父亲与海外求学女儿的日常：希望无需计算，就能知道彼此此刻身处清晨还是夜晚。于是，两座城市被放在同一块屏幕上，让时间成为一种安静的陪伴。</span><span data-en>DualFlipClock began with a father and a daughter studying far from home: a wish to know, without calculating, whether it was morning or night where the other person was. Two cities came together on one screen, turning time into a quiet sense of presence.</span></p>
-      </div>
-    </section>
-
-    <section class="closing" aria-labelledby="closing-title">
-      <img src="assets/app-icon.png?v=1024" alt="DualFlipClock App 图标" width="180" height="180" class="closing-icon reveal">
-      <h2 id="closing-title" class="reveal"><span data-zh>让相隔两地，也能共享此刻。</span><span data-en>Share the moment, wherever you are.</span></h2>
-      <a class="app-store-button reveal" href="https://apps.apple.com/app/id6766014702" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.03-3.02 2.47-4.49 2.58-4.56a5.54 5.54 0 0 0-4.36-2.36c-1.84-.2-3.62 1.1-4.56 1.1-.96 0-2.41-1.08-3.97-1.05a5.8 5.8 0 0 0-4.87 2.97c-2.12 3.67-.54 9.07 1.49 12.04 1.02 1.45 2.2 3.07 3.77 3.01 1.53-.06 2.1-.97 3.95-.97 1.83 0 2.37.97 3.97.93 1.65-.02 2.69-1.46 3.67-2.92a12.03 12.03 0 0 0 1.68-3.42 5.22 5.22 0 0 1-3.35-4.77ZM14.07 3.67A5.3 5.3 0 0 0 15.29 0a5.39 5.39 0 0 0-3.49 1.75 5.03 5.03 0 0 0-1.25 3.53 4.47 4.47 0 0 0 3.52-1.61Z"/></svg>
-        <span><small data-zh>下载于</small><small data-en>Download on the</small><strong>App Store</strong></span>
+      <a class="app-card creative-card" href="creativeclock/" aria-label="打开 CreativeClock 产品页面">
+        <div class="card-light" aria-hidden="true"></div>
+        <div class="app-icon-wrap">
+          <img src="creativeclock/assets/images/app-icon.png" width="1024" height="1024" alt="CreativeClock App 图标">
+        </div>
+        <div class="app-copy">
+          <span class="app-number">02</span>
+          <p class="app-kicker">A clock that moves</p>
+          <h2>CreativeClock</h2>
+          <p>汽车、叉车、工人与机械翻页。四个会动的世界，让时间成为桌面上的风景。</p>
+          <span class="enter-link">进入产品页 <b aria-hidden="true">↗</b></span>
+        </div>
       </a>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-brand"><img src="assets/app-icon.png?v=1024" alt="" width="30" height="30"><span>DualFlipClock</span></div>
-    <nav aria-label="页脚导航"><a href="privacy.html"><span data-zh>隐私政策</span><span data-en>Privacy</span></a><a href="support.html"><span data-zh>支持</span><span data-en>Support</span></a></nav>
-    <p>© 2026 Lu Lin</p>
+  <footer class="hub-footer">
+    <span>© 2026 Lu Lin</span>
+    <span>Designed for iPhone &amp; iPad</span>
   </footer>
-  <script src="script.js"></script>
 </body>
 </html>

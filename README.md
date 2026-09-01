@@ -1,5 +1,8 @@
-# DualFlipClock Website
+# Clock Studio Website
 
-Static website for [DualFlipClock](https://apps.apple.com/app/id6766014702), published with GitHub Pages at <https://dowellhz.github.io/clock/>.
+Static GitHub Pages site for two independent iPhone and iPad apps:
 
-The site uses plain HTML, CSS, and JavaScript with no build step or external runtime dependencies.
+- [DualFlipClock](https://dowellhz.github.io/clock/dualflipclock/)
+- [CreativeClock](https://dowellhz.github.io/clock/creativeclock/)
+
+The shared app directory is published at <https://dowellhz.github.io/clock/>. The site uses plain HTML, CSS, and JavaScript with no build step or external runtime dependencies.
