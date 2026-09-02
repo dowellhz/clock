@@ -20,3 +20,70 @@ document.querySelectorAll('.reveal').forEach((element) => observer.observe(eleme
 document.querySelectorAll('[data-year]').forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
+
+const videoPlayers = [...document.querySelectorAll('[data-video-player]')];
+
+const pauseOtherVideos = (activeVideo) => {
+  videoPlayers.forEach((player) => {
+    const video = player.querySelector('video');
+    if (video && video !== activeVideo && !video.paused) video.pause();
+  });
+};
+
+videoPlayers.forEach((player) => {
+  const video = player.querySelector('video');
+  const toggle = player.querySelector('.video-toggle');
+  if (!video || !toggle) return;
+
+  const title = video.getAttribute('aria-label') || '演示视频';
+
+  const togglePlayback = async () => {
+    if (!video.paused) {
+      video.pause();
+      return;
+    }
+
+    pauseOtherVideos(video);
+    player.classList.add('is-loading');
+    try {
+      await video.play();
+    } catch (_error) {
+      player.classList.remove('is-loading');
+    }
+  };
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    togglePlayback();
+  });
+
+  video.addEventListener('click', togglePlayback);
+  video.addEventListener('play', () => {
+    player.classList.remove('is-loading');
+    player.classList.add('is-playing');
+    toggle.setAttribute('aria-label', `暂停${title}`);
+  });
+  video.addEventListener('pause', () => {
+    player.classList.remove('is-loading');
+    player.classList.remove('is-playing');
+    toggle.setAttribute('aria-label', `播放${title}`);
+  });
+  video.addEventListener('waiting', () => player.classList.add('is-loading'));
+  video.addEventListener('canplay', () => player.classList.remove('is-loading'));
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    player.classList.remove('is-playing');
+  });
+});
+
+const videoVisibilityObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) entry.target.querySelector('video')?.pause();
+  });
+}, { threshold: 0.08 });
+
+videoPlayers.forEach((player) => videoVisibilityObserver.observe(player));
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) pauseOtherVideos(null);
+});
