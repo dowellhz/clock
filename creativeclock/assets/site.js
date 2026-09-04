@@ -23,6 +23,28 @@ document.querySelectorAll('[data-year]').forEach((element) => {
 
 const videoPlayers = [...document.querySelectorAll('[data-video-player]')];
 
+const warmVideo = (video) => {
+  if (!video || video.dataset.warmed === 'true') return;
+  video.dataset.warmed = 'true';
+  video.preload = 'auto';
+  video.load();
+};
+
+const firstVideo = videoPlayers[0]?.querySelector('video');
+if (firstVideo) {
+  firstVideo.dataset.warmed = 'true';
+}
+
+const videoWarmupObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    warmVideo(entry.target.querySelector('video'));
+    videoWarmupObserver.unobserve(entry.target);
+  });
+}, { rootMargin: '360px 0px', threshold: 0 });
+
+videoPlayers.slice(1).forEach((player) => videoWarmupObserver.observe(player));
+
 const pauseOtherVideos = (activeVideo) => {
   videoPlayers.forEach((player) => {
     const video = player.querySelector('video');
@@ -44,6 +66,7 @@ videoPlayers.forEach((player) => {
     }
 
     pauseOtherVideos(video);
+    warmVideo(video);
     player.classList.add('is-loading');
     try {
       await video.play();
