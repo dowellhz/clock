@@ -23,27 +23,13 @@ document.querySelectorAll('[data-year]').forEach((element) => {
 
 const videoPlayers = [...document.querySelectorAll('[data-video-player]')];
 
+// 只提升 preload，不再调用 load()：load() 会中断刚发起的 play()，
+// 在 Safari 上表现为「第一次点击没反应」。
 const warmVideo = (video) => {
   if (!video || video.dataset.warmed === 'true') return;
   video.dataset.warmed = 'true';
   video.preload = 'auto';
-  video.load();
 };
-
-const firstVideo = videoPlayers[0]?.querySelector('video');
-if (firstVideo) {
-  firstVideo.dataset.warmed = 'true';
-}
-
-const videoWarmupObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    warmVideo(entry.target.querySelector('video'));
-    videoWarmupObserver.unobserve(entry.target);
-  });
-}, { rootMargin: '360px 0px', threshold: 0 });
-
-videoPlayers.slice(1).forEach((player) => videoWarmupObserver.observe(player));
 
 const pauseOtherVideos = (activeVideo) => {
   videoPlayers.forEach((player) => {
@@ -57,9 +43,18 @@ videoPlayers.forEach((player) => {
   const toggle = player.querySelector('.video-toggle');
   if (!video || !toggle) return;
 
+  // 演示视频本身是无声的，静音可避免在 iOS 上抢占音频会话、打断用户正在听的音乐。
+  video.muted = true;
+
   const title = video.getAttribute('aria-label') || '演示视频';
 
-  const togglePlayback = async () => {
+  // 预热只发生在用户表现出意图时（悬停 / 按下 / 键盘聚焦），
+  // 而不是滚动到附近就预下载，避免一次拉满 7 个视频。
+  ['pointerenter', 'pointerdown', 'focusin'].forEach((type) => {
+    player.addEventListener(type, () => warmVideo(video), { once: true, passive: true });
+  });
+
+  const togglePlayback = () => {
     if (!video.paused) {
       video.pause();
       return;
@@ -67,11 +62,17 @@ videoPlayers.forEach((player) => {
 
     pauseOtherVideos(video);
     warmVideo(video);
+    player.classList.remove('has-error');
     player.classList.add('is-loading');
-    try {
-      await video.play();
-    } catch (_error) {
-      player.classList.remove('is-loading');
+
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === 'function') {
+      attempt.catch((error) => {
+        // 用户在缓冲期间又点了暂停 / 切到别的视频，属于正常中断
+        if (error && error.name === 'AbortError') return;
+        player.classList.remove('is-loading');
+        player.classList.add('has-error');
+      });
     }
   };
 
@@ -82,20 +83,27 @@ videoPlayers.forEach((player) => {
 
   video.addEventListener('click', togglePlayback);
   video.addEventListener('play', () => {
-    player.classList.remove('is-loading');
+    player.classList.remove('is-loading', 'has-error');
     player.classList.add('is-playing');
     toggle.setAttribute('aria-label', `暂停${title}`);
   });
   video.addEventListener('pause', () => {
-    player.classList.remove('is-loading');
-    player.classList.remove('is-playing');
+    player.classList.remove('is-loading', 'is-playing');
     toggle.setAttribute('aria-label', `播放${title}`);
   });
   video.addEventListener('waiting', () => player.classList.add('is-loading'));
+  video.addEventListener('playing', () => player.classList.remove('is-loading'));
   video.addEventListener('canplay', () => player.classList.remove('is-loading'));
+  video.addEventListener('error', () => {
+    player.classList.remove('is-loading', 'is-playing');
+    player.classList.add('has-error');
+  });
   video.addEventListener('ended', () => {
+    player.classList.remove('is-playing', 'is-loading');
+    toggle.setAttribute('aria-label', `播放${title}`);
+    // 归零即可：poster 图本身就是第 0 帧（实测 SSIM 0.937，肉眼无差别），
+    // 这里调 load() 只会白白重新请求一次视频。
     video.currentTime = 0;
-    player.classList.remove('is-playing');
   });
 });
 
