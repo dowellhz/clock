@@ -434,3 +434,24 @@ h1 {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* 【关键】缓冲中时必须让按钮可见，否则转圈图标（画在 .video-toggle::after 上）
+   会跟着 .is-playing 的 opacity:0 一起消失，用户看到的就是「点了完全没反应」。 */
+.video-stage.is-playing.is-loading .video-toggle { opacity: 1; }
+
+/* 触屏设备没有 hover，播放中暂停键永远不可见。 */
+@media (hover: none) {
+  .video-stage.is-playing .video-toggle { opacity: .32; }
+}
+
+/* 播放失败 / 长时间卡住时给出文字反馈。 */
+.video-stage.has-error::before {
+  content: "视频加载失败，请重试";
+  position: absolute;
+  inset: auto 0 14px;
+  z-index: 4;
+  text-align: center;
+  color: rgba(255,255,255,.82);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
