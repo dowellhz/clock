@@ -98,11 +98,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-radius: 999px;
   font-size: 14px;
   font-weight: 680;
-  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  transition: background 180ms ease, border-color 180ms ease;
 }
 
 .nav-pill { border: 1px solid var(--line); color: var(--ink) !important; }
-.nav-pill:hover, .button:hover { transform: translateY(-2px); }
+.nav-pill:hover, .button.secondary:hover { background: rgba(255,255,255,.07); }
+.button.primary:hover { background: var(--orange-soft); }
 .button.primary { color: #16100a; background: linear-gradient(135deg, var(--orange-soft), var(--orange)); }
 .button.secondary { border: 1px solid var(--line); background: rgba(255,255,255,.03); }
 
@@ -280,12 +281,12 @@ h1 {
   box-shadow: 0 14px 44px rgba(0,0,0,.46);
   backdrop-filter: blur(14px) saturate(125%);
   cursor: pointer;
-  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
+  transition: opacity 180ms ease, background 180ms ease;
 }
 
 .video-toggle:hover,
 .video-toggle:focus-visible {
-  transform: translate(-50%, -50%) scale(1.07);
+  transform: translate(-50%, -50%);
   background: rgba(255,159,28,.88);
   outline: none;
 }
@@ -364,7 +365,7 @@ h1 {
 .cta {
   display: grid;
   grid-template-columns: 120px 1fr auto;
-  align-items: center;
+  align-items: start;
   gap: 34px;
   padding: 46px;
   border: 1px solid rgba(255,159,28,.22);
