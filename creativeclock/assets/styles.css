@@ -377,11 +377,20 @@ h1 {
 .cta p { margin: 0; color: var(--muted); }
 .download-actions { min-width: 0; }
 .download-actions > .button { width: 100%; }
-.store-options { margin-top: 12px; max-width: 270px; font-size: 12px; line-height: 1.6; color: var(--muted); }
-.store-options summary { cursor: pointer; }
-.store-options p { margin-top: 10px; }
-.store-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
-.store-links a { padding: 10px 0; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.store-options { margin-top: 16px; width: 250px; max-width: 100%; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.store-options summary { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; cursor: pointer; list-style: none; }
+.store-options summary::-webkit-details-marker { display: none; }
+.store-options summary span[lang="en"] { font-size: 11px; opacity: .8; }
+.store-options summary::after { content: ""; width: 5px; height: 5px; margin-left: 3px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.store-options[open] summary::after { transform: translateY(1px) rotate(225deg); }
+.store-options summary:hover { color: var(--ink); }
+.store-options .store-hint { margin-top: 14px; font-size: 12px; line-height: 1.8; }
+.store-hint span { display: block; font-size: 11px; }
+.store-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.store-links a { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: rgba(255,255,255,.025); }
+.store-links a:hover { border-color: var(--orange-soft); background: rgba(255,159,28,.06); }
+.store-links small { font-size: 10px; color: var(--muted); }
+.store-options summary:focus-visible, .store-links a:focus-visible { outline: 2px solid var(--orange-soft); outline-offset: 4px; }
 
 .site-footer { padding: 40px 0 48px; border-top: 1px solid var(--line); }
 .footer-row { display: flex; justify-content: space-between; gap: 30px; color: var(--dim); font-size: 13px; }
