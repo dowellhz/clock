@@ -375,6 +375,13 @@ h1 {
 .cta img { width: 120px; border-radius: 28px; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
 .cta h2 { margin-bottom: 8px; font-size: clamp(30px, 4vw, 50px); letter-spacing: -.045em; }
 .cta p { margin: 0; color: var(--muted); }
+.download-actions { min-width: 0; }
+.download-actions > .button { width: 100%; }
+.store-options { margin-top: 12px; max-width: 270px; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.store-options summary { cursor: pointer; }
+.store-options p { margin-top: 10px; }
+.store-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
+.store-links a { padding: 10px 0; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 
 .site-footer { padding: 40px 0 48px; border-top: 1px solid var(--line); }
 .footer-row { display: flex; justify-content: space-between; gap: 30px; color: var(--dim); font-size: 13px; }
@@ -428,7 +435,7 @@ h1 {
   .feature h3 { margin-top: 34px; }
   .cta { grid-template-columns: 84px 1fr; padding: 28px; }
   .cta img { width: 84px; border-radius: 20px; }
-  .cta .button { grid-column: 1 / -1; }
+  .cta .download-actions { grid-column: 1 / -1; }
   .legal-layout { grid-template-columns: 1fr; gap: 34px; }
   .legal-aside { position: static; }
 }
