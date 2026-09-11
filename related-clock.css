@@ -1,0 +1,33 @@
+.related-clock {
+  --related-accent: var(--blue, #ffbd61);
+  max-width: var(--max, 1180px);
+  margin: 0 auto;
+  padding: 24px 24px 80px;
+}
+.related-clock-card {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .035);
+}
+.related-clock-icon { display: block; width: 88px; height: 88px; border-radius: 22px; }
+.related-clock-label { margin: 0 0 10px; color: var(--related-accent); font-size: 12px; }
+.related-clock h2 { margin: 0; font-size: clamp(24px, 3vw, 32px); line-height: 1.2; letter-spacing: -.025em; }
+.related-clock-name { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+.related-clock-description { max-width: 640px; margin: 14px 0 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.related-clock-link { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 46px; padding: 12px 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; white-space: nowrap; }
+.related-clock-link:hover { border-color: var(--related-accent); background: rgba(255, 255, 255, .05); }
+.related-clock-link:focus-visible { outline: 2px solid var(--related-accent); outline-offset: 5px; }
+@media (max-width: 820px) {
+  .related-clock-card { grid-template-columns: 72px minmax(0, 1fr); gap: 22px; padding: 26px; }
+  .related-clock-icon { width: 72px; height: 72px; border-radius: 18px; }
+  .related-clock-link { grid-column: 1 / -1; justify-self: start; }
+}
+@media (max-width: 480px) {
+  .related-clock { padding: 16px 18px 56px; }
+  .related-clock-card { grid-template-columns: minmax(0, 1fr); padding: 24px; }
+}
