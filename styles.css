@@ -41,6 +41,27 @@ h1 { margin: 0; font-size: clamp(58px, 5.3vw, 80px); line-height: .98; letter-sp
 .app-store-button strong { font-size: 20px; line-height: 1.1; font-weight: 600; }
 .requirements { color: #6f7680; font-size: 11px; margin: 13px 0 0; }
 
+.store-options { margin-top: 16px; width: 300px; max-width: 100%; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.store-options summary { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; cursor: pointer; list-style: none; }
+.store-options summary::-webkit-details-marker { display: none; }
+.store-options summary span[lang="en"] { font-size: 11px; opacity: .8; }
+.store-options summary::after { content: ""; width: 5px; height: 5px; margin-left: 3px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.store-options[open] summary::after { transform: translateY(1px) rotate(225deg); }
+.store-options summary:hover { color: var(--text); }
+.store-options .store-hint { margin-top: 14px; font-size: 12px; line-height: 1.8; }
+.store-hint span { display: block; font-size: 11px; }
+.store-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.store-links a { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; color: var(--text); background: rgba(255,255,255,.025); }
+.store-links a:hover { border-color: var(--blue); background: rgba(117,185,255,.06); }
+.store-links small { font-size: 10px; color: var(--muted); }
+.store-options summary:focus-visible, .store-links a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.store-options { text-align: left; }
+.store-hint { margin-bottom: 0; }
+.store-links small { overflow-wrap: anywhere; }
+@media (max-width: 900px) {
+  .hero .store-options { margin-inline: auto; }
+}
+
 .device-wrap { position: relative; z-index: 1; transform: perspective(1200px) rotateY(-7deg) rotateX(2deg); }
 .device-glow { position: absolute; inset: 14% 5% 2%; background: #207dce; filter: blur(100px); opacity: .22; }
 .device { position: relative; width: min(760px, 54vw); aspect-ratio: 2.164 / 1; margin: auto; padding: 10px; border: 1px solid rgba(255, 255, 255, .17); border-radius: 42px; background: linear-gradient(145deg, #34373b, #08090b 40%, #202225); box-shadow: 0 45px 100px rgba(0, 0, 0, .65), inset 0 0 0 2px #050506; }
