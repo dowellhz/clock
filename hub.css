@@ -102,3 +102,6 @@ h1 span { color: transparent; background: linear-gradient(110deg, #9ecbff 10%, #
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+.plaintick-card .card-light { background: #b3c7df; }
+@media (min-width: 1100px) { .app-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } .app-card { padding: 36px; min-height: 550px; } .app-copy h2 { font-size: 42px; } }
