@@ -1,0 +1,59 @@
+/* Shared product/content navigation back to the Clock Studio directory. */
+header.studio-nav { width: 100%; }
+.studio-nav .studio-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.studio-nav .brand { flex-shrink: 0; }
+.studio-nav .brand > span { display: inline; }
+.studio-nav .studio-page-actions > .studio-home-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid var(--line, rgba(255, 255, 255, .15));
+  border-radius: 999px;
+  color: inherit;
+  background: rgba(255, 255, 255, .035);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.studio-home-link svg { display: block; flex: 0 0 16px; }
+.studio-nav .studio-home-link:hover { background: rgba(255, 255, 255, .09); }
+.studio-nav .studio-home-link:focus-visible {
+  outline: 2px solid var(--blue, var(--orange-soft, #8fbfff));
+  outline-offset: 4px;
+}
+@media (max-width: 820px) {
+  .studio-nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    align-content: center;
+    height: 116px;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+  .site-header > .studio-nav {
+    width: min(calc(100% - 28px), var(--max, 1180px));
+    padding: 12px 0;
+  }
+  .studio-nav .studio-page-actions {
+    width: 100%;
+    gap: 8px;
+  }
+  .studio-nav .studio-page-actions > .studio-home-link { margin-right: auto; }
+  .studio-nav .studio-page-actions > .nav-links { display: none; }
+  .studio-nav .nav-download { padding-inline: 14px; white-space: nowrap; }
+  .studio-nav .nav-pill { padding-inline: 14px; white-space: nowrap; }
+  .studio-nav .language, .studio-nav .language-switch { flex-shrink: 0; }
+  .studio-page-header + main .hero { padding-top: 158px; }
+  html { scroll-padding-top: 132px; }
+}
