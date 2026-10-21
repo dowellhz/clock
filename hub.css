@@ -44,7 +44,7 @@ a { color: inherit; text-decoration: none; }
 .orbit-two { width: 720px; height: 720px; opacity: .55; }
 .hub-eyebrow { margin: 0 0 24px; color: #b5b4ae; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
 h1 { margin: 0; font-size: clamp(60px, 9vw, 120px); line-height: .88; letter-spacing: -.075em; font-weight: 760; }
-h1 span { color: transparent; background: linear-gradient(110deg, #9ecbff 10%, #f2efe7 50%, #ffb54f 90%); background-clip: text; -webkit-background-clip: text; }
+h1 em { font-style: normal; color: transparent; background: linear-gradient(110deg, #9ecbff 10%, #f2efe7 50%, #ffb54f 90%); background-clip: text; -webkit-background-clip: text; }
 .hub-lead { margin: 34px auto 0; color: var(--muted); font-size: clamp(16px, 1.7vw, 20px); line-height: 1.8; }
 
 .app-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding-bottom: 120px; }
@@ -105,3 +105,8 @@ h1 span { color: transparent; background: linear-gradient(110deg, #9ecbff 10%, #
 
 .plaintick-card .card-light { background: #b3c7df; }
 @media (min-width: 1100px) { .app-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } .app-card { padding: 36px; min-height: 550px; } .app-copy h2 { font-size: 42px; } }
+
+.hub-actions { display: flex; align-items: center; gap: 18px; }
+html[lang="en"] .app-copy h2 { font-size: clamp(30px, 3.2vw, 42px); line-height: 1.1; letter-spacing: -.035em; }
+html[lang="en"] h1 { font-size: clamp(44px, 7vw, 94px); letter-spacing: -.04em; }
+@media (max-width: 560px) { html[lang="en"] h1 { font-size: clamp(42px, 12vw, 66px); } }

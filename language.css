@@ -1,0 +1,18 @@
+html:not([lang="en"]) [data-en], html[lang="en"] [data-zh],
+[data-zh][hidden], [data-en][hidden] { display: none !important; }
+.language-switch {
+  flex-shrink: 0;
+  min-width: 48px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--line, rgba(255,255,255,.15));
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.language-switch:hover { background: rgba(255,255,255,.12); }
+.language-switch:focus-visible { outline: 2px solid #8fbfff; outline-offset: 4px; }
+.video-stage.has-error::before { content: attr(data-error); }

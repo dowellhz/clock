@@ -70,7 +70,17 @@ videoPlayers.forEach((player) => {
   // 同时也让「缓冲够了再自动开播」不受自动播放策略限制。
   video.muted = true;
 
-  const title = video.getAttribute('aria-label') || '演示视频';
+  const language = () => document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'zh';
+  const title = () => video.getAttribute(`data-${language()}-aria-label`)
+    || video.getAttribute('aria-label') || (language() === 'en' ? 'demo video' : '演示视频');
+  const refreshLabels = () => {
+    const english = language() === 'en';
+    const action = buffering ? (english ? 'Cancel buffering for ' : '取消缓冲：')
+      : (!video.paused && !video.ended ? (english ? 'Pause ' : '暂停') : (english ? 'Play ' : '播放'));
+    toggle.setAttribute('aria-label', action + title());
+    player.dataset.error = english ? 'Video failed to load. Please try again.' : '视频加载失败，请重试';
+    if (buffering) showProgress();
+  };
   let buffering = null;
 
   const bufferedAhead = () => {
@@ -109,11 +119,11 @@ videoPlayers.forEach((player) => {
   const showProgress = () => {
     const target = bufferTarget();
     if (!Number.isFinite(target)) {
-      player.dataset.progress = '缓冲中…';
+      player.dataset.progress = language() === 'en' ? 'Buffering…' : '缓冲中…';
       return;
     }
     const pct = Math.min(100, Math.round((bufferedAhead() / target) * 100));
-    player.dataset.progress = `缓冲 ${pct}%`;
+    player.dataset.progress = language() === 'en' ? `Buffering ${pct}%` : `缓冲 ${pct}%`;
   };
 
   const enoughBuffered = () => bufferedAhead() >= bufferTarget();
@@ -126,6 +136,7 @@ videoPlayers.forEach((player) => {
     buffering = null;
     player.classList.remove('is-buffering', 'is-loading');
     delete player.dataset.progress;
+    refreshLabels();
   };
   player.cancelBuffering = cancelBuffering;
 
@@ -136,6 +147,7 @@ videoPlayers.forEach((player) => {
         if (error && error.name === 'AbortError') return;
         player.classList.remove('is-loading');
         player.classList.add('has-error');
+        refreshLabels();
       });
     }
   };
@@ -175,6 +187,7 @@ videoPlayers.forEach((player) => {
       buffering = null;
       player.classList.remove('is-buffering');
       delete player.dataset.progress;
+      refreshLabels();
       reallyPlay();
     };
 
@@ -193,6 +206,7 @@ videoPlayers.forEach((player) => {
       }, 250),
     };
     video.addEventListener('canplaythrough', onReady);
+    refreshLabels();
   }
 
   toggle.addEventListener('click', (event) => {
@@ -205,12 +219,12 @@ videoPlayers.forEach((player) => {
     if (buffering) return;
     player.classList.remove('is-loading', 'has-error');
     player.classList.add('is-playing');
-    toggle.setAttribute('aria-label', `暂停${title}`);
+    refreshLabels();
   });
   video.addEventListener('pause', () => {
     if (buffering) return;   // 缓冲阶段的 pause 不算用户暂停
     player.classList.remove('is-loading', 'is-playing');
-    toggle.setAttribute('aria-label', `播放${title}`);
+    refreshLabels();
   });
   video.addEventListener('waiting', () => {
     if (buffering) return;
@@ -227,10 +241,15 @@ videoPlayers.forEach((player) => {
   });
   video.addEventListener('ended', () => {
     player.classList.remove('is-playing', 'is-loading');
-    toggle.setAttribute('aria-label', `播放${title}`);
+    refreshLabels();
     // 归零即可：poster 就是第 0 帧（实测 SSIM 0.937），调 load() 只会白白重新请求。
     video.currentTime = 0;
   });
+
+  // Read the current language as well as listening: the shared deferred
+  // language script may have dispatched its initial event before site.js ran.
+  refreshLabels();
+  window.addEventListener('clock-language-change', refreshLabels);
 
   if (video.dataset.poster) posterObserver.observe(player);
 
